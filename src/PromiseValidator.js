@@ -13,21 +13,7 @@ function PromiseValidator(fields, rules, customErrors) {
   this.validatedValues = {};
 }
 
-
-
 PromiseValidator.prototype = {
-  /**
-   * PromiseValidator provide a pseudo string rule named "canBeEmpty|empty",
-   * the field with "canBeEmpty" rule applied will pass validation once the field is empty
-   *  ignoring any other rules.
-   * */
-  _canBeEmptyRules: ["canBeEmpty", "empty"],
-  _isEmpty: function (field) {
-    if(field === undefined || field === null){
-      return true;
-    }
-    return typeof field === "string" && field.trim().length === 0;
-  },
   /**
    * Initiate validation results every time the "validate" method is called
    */
@@ -60,7 +46,7 @@ PromiseValidator.prototype = {
     }
     rules = rules instanceof Array ? rules : [rules];
     // check empty rule
-    if(typeof rules[0] === "string" && this._canBeEmptyRules.indexOf(rules[0]) > -1 && this._isEmpty(value)){
+    if(typeof rules[0] === "string" && PromiseValidator._canBeEmptyRules.indexOf(rules[0]) > -1 && PromiseValidator._isEmpty(value)){
       return Promise.resolve(value);
     }
     
@@ -127,6 +113,20 @@ PromiseValidator.prototype = {
       });
     });
   }
+};
+
+/**
+ * PromiseValidator provide a pseudo string rule named "canBeEmpty|empty",
+ * the field with "canBeEmpty" rule applied will pass validation once the field is empty
+ *  ignoring any other rules.
+ * */
+PromiseValidator._canBeEmptyRules = ["canBeEmpty", "empty"];
+
+PromiseValidator._isEmpty = function (field) {
+  if(field === undefined || field === null){
+    return true;
+  }
+  return typeof field === "string" && field.trim().length === 0;
 };
 
 PromiseValidator.resultsToArray = function (results) {

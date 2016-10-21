@@ -18,13 +18,15 @@
     "Promise"
   ],
   "jest": {
-    "rootDir": ""
+    "modulePathIgnorePatterns": [
+      "/react/build/"
+    ]
   },
   "author": "jimmy-YMJ",
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "jest-cli": "^16.0.2"
+    "jest": "^16.0.2"
   }
 }
