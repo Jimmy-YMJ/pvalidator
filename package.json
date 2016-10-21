@@ -1,11 +1,11 @@
 {
   "name": "pvalidator",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "A Promise based validator",
   "main": "PromiseValidator.js",
   "contributors": [
     {
-      "name": "jimmy-YMJ",
+      "name": "Jimmy-YMJ",
       "email": "ddmingmingyang@gmail.com"
     }
   ],
@@ -26,7 +26,7 @@
       "/react/build/"
     ]
   },
-  "author": "jimmy-YMJ",
+  "author": "Jimmy-YMJ",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
