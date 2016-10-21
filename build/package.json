@@ -2,7 +2,7 @@
   "name": "pvalidator",
   "version": "1.0.0",
   "description": "A Promise based validator",
-  "main": "dest/PromiseValidator.js",
+  "main": "PromiseValidator.js",
   "contributors": [
     {
       "name": "jimmy-YMJ",
@@ -12,6 +12,10 @@
   "scripts": {
     "build": "gulp",
     "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jimmy-YMJ/p-validator"
   },
   "keywords": [
     "validator",
@@ -23,7 +27,7 @@
     ]
   },
   "author": "jimmy-YMJ",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",

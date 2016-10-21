@@ -13,7 +13,7 @@ gulp.task('eslint', function (cb) {
 });
 
 gulp.task('release', function (cb) {
-  gulp.src(["./package.json", "./README.md"]).pipe(gulp.dest(build));
+  gulp.src(["./package.json", "./README.md", "./LICENSE"]).pipe(gulp.dest(build));
 });
 
 gulp.task('default', ['eslint', 'build', 'release']);
