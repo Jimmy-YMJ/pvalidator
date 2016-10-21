@@ -1,6 +1,6 @@
 {
   "name": "pvalidator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Promise based validator",
   "main": "PromiseValidator.js",
   "contributors": [
