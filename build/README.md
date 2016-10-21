@@ -1,10 +1,10 @@
-# p-validator
+# pvalidator
 Promise based data validator for browser and ndoejs
 
 
 ## Installing
 ```
-$ npm install p-validator
+$ npm install pvalidator
 ```
 
 ## Problems to solve
@@ -12,17 +12,17 @@ Suppose you have a form with more than one fields, the strategy you want to vali
 - validate the field and show some tip when any field element is blur or selected
 - validate all the fields and stop the submission if something wrong is happening when the form is going to be submitted
 
-`p-validator` provides `validate` and `vlaidateField` respectively.
+`pvalidator` provides `validate` and `vlaidateField` respectively.
 
 Further more, sometimes you may want to validate some field on the server via ajax, or with some very special rules. 
-`p-validator` provides some common rules and a flexible and simple way to write your own `rule`s.
+`pvalidator` provides some common rules and a flexible and simple way to write your own `rule`s.
 
 ## Example
 ```
-var Validator = require('p-validator'),
-  emailRule = require('p-validator/rules/email'),
-  alphaRule = require('p-validator/rules/alpha'),
-  stringRule = require('p-validator/rules/string');
+var Validator = require('pvalidator'),
+  emailRule = require('pvalidator/rules/email'),
+  alphaRule = require('pvalidator/rules/alpha'),
+  stringRule = require('pvalidator/rules/string');
 
 var fields = {
   username: 'foo',
