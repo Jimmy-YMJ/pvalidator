@@ -3,9 +3,13 @@ Promise based data validator for browser and ndoejs, it is lightweight and power
 
 
 ## Installing
+Use via npm:
 ```
 $ npm install pvalidator
 ```
+Use in browser:
+
+Copy `pvalidator.min.js` under the build directory. 
 
 ## Problems to solve
 - Suppose you have a form with more than one fields, the strategy you want to validate is:
