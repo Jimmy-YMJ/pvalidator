@@ -62,7 +62,7 @@ validator.validateField('email').then(function(field){
 | --- | --- | --- | --- |
 | fields  | the data you want to validate. Example: `{name: "foo"}`.| `Object` | `undefined` |
 | rules  | the rules for fields, the rule will be applied to field with the same key. Example: `{name: anyRule}`| `Object` | `undefined`|
-| customErrors | errors for field when the field validation is failed(replace the default error message from failure rule). Example: `{name: "the given name is not acceptable"}`| `Object` | `undefined` |
+| customErrors | replace the default error message from rule. Example: `{name: "the given name is not acceptable"}`| `Object` | `undefined` |
 
 **validator.validate(options)**
 
