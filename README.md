@@ -1,5 +1,5 @@
 # pvalidator
-Promise based data validator for browser and ndoejs
+Promise based data validator for browser and ndoejs, it is lightweight() but powerful.
 
 
 ## Installing
@@ -36,21 +36,21 @@ var rules = {
 };
 
 var errors = {
-  username: '用户名长度必须为3-25个字符，切只能包含字母。'
+  username: '用户名不符合要求。'
 };
 
 var validator = new Validator(fields, rules, errors);
 
 validator.validate().then(function(fields){
-  // do something with fields: {username: 'foo', email: 'foo@bar.com'}
+  // validation failed, this callback will not be executed.
 }, function(errors){
-     // do something with errors(the default type of errors is Array): ['用户名长度必须为3-25个字符，切只能包含字母。']
+  // do something with errors(the default type of errors is Array): ['用户名不符合要求。']
 });
 
 validator.validateField('email').then(function(field){
   // do something with field: 'foo@bar.com'
 }, function(error){
-     // do something with error: ''
+  // validation succeed, this callback will not be executed.
 });
 ```
 
