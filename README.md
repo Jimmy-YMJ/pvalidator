@@ -11,10 +11,10 @@ $ npm install pvalidator
 - Suppose you have a form with more than one fields, the strategy you want to validate is:
   Validate the field and show some tip when any field element is blur or selected;
   Validate all the fields and stop the submission if something wrong is happening when the form is going to be submitted.
-  And `pvalidator` provides `validate` and `validateField` respectively.
+  And **pvalidator** provides `validate` and `validateField` respectively.
 
 - Sometimes you may want to validate some field on the server via ajax, or with some very special rules. 
- `pvalidator` provides some common rules and a simple way to write your own `rule`s.
+ **pvalidator** provides some common rules and a simple way to write your own `rule`s.
 
 - Finally, you may need a flexible async validator for server side usage.
 
@@ -84,6 +84,7 @@ validator.validate({objectErrors: true}).then(function(fields){
 ```
 
 **validator.validateField(fieldName)**
+
 | **Params** | **Description** | **type** | **default** |
 | --- | --- | --- | --- |
 | fieldName | the name(key) of the field you want to validate | `String` | `undefined` |
@@ -99,21 +100,22 @@ validator.validateField("name").then(function(fieldValue){
 });
 ```
 ## Rules
-The **pvalidator** provides a pesudo rule named `"empty"`, if this rule is at the first place of rule array, the field can be empty.
+The **pvalidator** provides a pesudo rule named `"empty"`, if this rule is setted as the first item of rule array, the field can pass rule validation when it it empty ignoring any other rules.
 
-pvalidtor provides some simple rules:
+rules provided by **pvalidtor**:
 
-| **Rule** | **Description** |
-| --- | --- |
-| alpha | the target can only contains alpha characters |
-| alpha_dash | the target can only contains alphanumeric characters, dashes or underscores. |
-| alpha_num | the target can only contains alphanumeric characters |
-| email | the target must be a email |
-| equal | target[0] == target[1] |
-| same | target[0] === target[1] |
-| number | the target must be a number |
-| string | the target must be a string |
-| url | the target must be a url |
+| **Rule** | **Description** | **Usage** |
+| --- | --- | --- |
+| "empty" | the **"empty"** pseudo rule | `var rules = ["empty", email]`|
+| alpha | the target can only contains alpha characters | `var rule = require('pvalidator/rules/alpha')` |
+| alpha_dash | the target can only contains alphanumeric characters, dashes or underscores. | `var rule = require('pvalidator/rules/alpha_dash')` |
+| alpha_num | the target can only contains alphanumeric characters | `var rule = require('pvalidator/rules/alpha_num')` |
+| email | the target must be a email | `var rule = require('pvalidator/rules/email')` |
+| equal | target[0] == target[1] | `var rule = require('pvalidator/rules/equal')` |
+| same | target[0] === target[1] | `var rule = require('pvalidator/rules/same')` |
+| number | the target must be a number | `var rule = require('pvalidator/rules/number)')(min, max)` |
+| string | the target must be a string | `var rule = require('pvalidator/rules/string')(minLength, maxLength)` |
+| url | the target must be a url | `var rule = require('pvalidator/rules/url')` |
 
 ## Write your own rules
 The rule used by **pvalidator** is a `function`, below is the `equal` rule:
