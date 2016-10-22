@@ -1,5 +1,5 @@
 # pvalidator
-Promise based data validator for browser and ndoejs, it is lightweight() but powerful.
+Promise based data validator for browser and ndoejs, it is lightweight but powerful.
 
 
 ## Installing
@@ -61,7 +61,7 @@ validator.validateField('email').then(function(field){
 | **Params** | **Description** | **type** | **default** |
 | --- | --- | --- | --- |
 | fields  | the data you want to validate. Example: `{name: "foo"}`.| `Object` | `undefined` |
-| rules  | the rules for fields, the rule will be applied to field with the same key. Example: `{name: anyRule}`| `Object` | `undefined`|
+| rules  | rules for fields, the rule will be applied to field with the same key. Example: `{name: anyRule}`| `Object` | `undefined`|
 | customErrors | replace the default error message from rule. Example: `{name: "the given name is not acceptable"}`| `Object` | `undefined` |
 
 **validator.validate(options)**
@@ -69,8 +69,7 @@ validator.validateField('email').then(function(field){
 | **Option** | **Description** | **type** | **default** |
 | --- | --- | --- | --- |
 | fields | if this option is setted, the __fields__ will replace the initial fields setted in constructor | `Object` | `undefined` |
-| objectErrors | the default errors is returned by type of `Array`, if this option is setted, the type of errors is `Object` |
-`Boolean` | `false` |
+| objectErrors | the default errors is returned by type of `Array`, if this option is setted, the type of errors is `Object` |`Boolean` | `false` |
 
 This method returns an instance of `Promise`.
 
@@ -130,7 +129,7 @@ function (judgement, success, failure) {
 ```
 Explaination:
 when a rule is applied to a field, the field's value will be passed as the first param, `success` and `failure` callbacks will be passed as the second and third params, anytime you want this field pass just call the `succsss` and vice versa.
-the `failure` callback accepts a string param whose ":field" will be replaced with the name(key) of the field when error message if produced.
+the `failure` callback accepts a string param whose ":field" will be replaced with the name(key) of the field when error message is produced.
 
 Email server side validation rule example(not rigorous):
 ```
