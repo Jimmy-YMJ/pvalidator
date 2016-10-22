@@ -1,6 +1,6 @@
-const PromiseValidator = require("../src/PromiseValidator");
+const PromiseValidator = require("../build/pvalidator.min");
 
-const rulesHomePath = "../src/rules/";
+const rulesHomePath = "../build/rules/";
 
 function testRule(fields, rules, expectErrors) {
   return () => {

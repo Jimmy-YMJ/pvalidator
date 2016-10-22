@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * PromiseValidator constructor
  *
@@ -17,18 +19,18 @@ PromiseValidator.prototype = {
   /**
    * Initiate validation results every time the "validate" method is called
    */
-  _initResults: function () {
+  _initResults: function _initResults() {
     this.results = null;
     this.validatedValues = {};
   },
-  _createFieldChecker: function (field, value, rule, ruleIndex) {
+  _createFieldChecker: function _createFieldChecker(field, value, rule, ruleIndex) {
     return new Promise(function (resolve, reject) {
       rule(value, resolve, reject);
     }).then(function () {
       return value;
     }, function (errTemplate) {
       var err = this.customErrors[field];
-      err = err ? (err instanceof Array ? err[ruleIndex] : err) : errTemplate.replace(":field", field);
+      err = err ? err instanceof Array ? err[ruleIndex] : err : errTemplate.replace(":field", field);
       this.results = this.results || {};
       this.results[field] = err;
       return Promise.reject(err);
@@ -39,20 +41,20 @@ PromiseValidator.prototype = {
    *
    * @return {Promise}
    * */
-  _checkField: function (field, value, rules, isSingleFieldValidation) {
+  _checkField: function _checkField(field, value, rules, isSingleFieldValidation) {
     value = typeof value === "function" ? value() : value;
-    if(!(isSingleFieldValidation === true)){
+    if (!(isSingleFieldValidation === true)) {
       this.validatedValues[field] = value;
     }
     rules = rules instanceof Array ? rules : [rules];
     // check empty rule
-    if(typeof rules[0] === "string" && PromiseValidator._canBeEmptyRules.indexOf(rules[0]) > -1 && PromiseValidator._isEmpty(value)){
+    if (typeof rules[0] === "string" && PromiseValidator._canBeEmptyRules.indexOf(rules[0]) > -1 && PromiseValidator._isEmpty(value)) {
       return Promise.resolve(value);
     }
-    
+
     var result = Promise.resolve();
     rules.forEach(function (rule, ruleIndex) {
-      if(typeof rule === "function"){
+      if (typeof rule === "function") {
         result = result.then(function () {
           return this._createFieldChecker(field, value, rule, ruleIndex);
         }.bind(this));
@@ -60,8 +62,8 @@ PromiseValidator.prototype = {
     }.bind(this));
     return result;
   },
-  _setFields: function (fields) {
-    if(fields){
+  _setFields: function _setFields(fields) {
+    if (fields) {
       this.fields = fields;
       this.fieldsKey = PromiseValidator.getObjectKeys(fields);
     }
@@ -71,8 +73,8 @@ PromiseValidator.prototype = {
    *
    * @return {Promise}
    * */
-  validateField: function (fieldName) {
-    if(!this.fields[fieldName]){
+  validateField: function validateField(fieldName) {
+    if (!this.fields[fieldName]) {
       throw new Error("has no field named " + fieldName);
     }
     return this._checkField(fieldName, this.fields[fieldName], this.rules[fieldName], true);
@@ -83,9 +85,9 @@ PromiseValidator.prototype = {
    * @param {object} options
    * @return {Promise}
    * */
-  validate: function (options) {
+  validate: function validate(options) {
     options = options || {};
-    if(options.fields){
+    if (options.fields) {
       this._setFields(options.fields);
     }
     this._initResults();
@@ -99,9 +101,9 @@ PromiseValidator.prototype = {
       });
     }.bind(this));
     var checkResult = function (resolve, reject) {
-      if(this.results){
+      if (this.results) {
         reject(options.objectErrors ? this.results : PromiseValidator.resultsToArray(this.results));
-      }else{
+      } else {
         resolve(this.validatedValues);
       }
     }.bind(this);
@@ -123,7 +125,7 @@ PromiseValidator.prototype = {
 PromiseValidator._canBeEmptyRules = ["canBeEmpty", "empty"];
 
 PromiseValidator._isEmpty = function (field) {
-  if(field === undefined || field === null){
+  if (field === undefined || field === null) {
     return true;
   }
   return typeof field === "string" && field.trim().length === 0;
@@ -131,8 +133,8 @@ PromiseValidator._isEmpty = function (field) {
 
 PromiseValidator.resultsToArray = function (results) {
   var arr = [];
-  for(var key in results){
-    if(results.hasOwnProperty(key)){
+  for (var key in results) {
+    if (results.hasOwnProperty(key)) {
       arr.push(results[key]);
     }
   }
@@ -140,12 +142,12 @@ PromiseValidator.resultsToArray = function (results) {
 };
 
 PromiseValidator.getObjectKeys = function (obj) {
-  if(Object.keys){
+  if (Object.keys) {
     return Object.keys(obj);
   }
   var keys = [];
-  for(var key in obj){
-    if(obj.hasOwnProperty(key)){
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) {
       keys.push(key);
     }
   }

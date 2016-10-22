@@ -1,5 +1,5 @@
-const PromiseValidator = require("../src/PromiseValidator");
-const string = require("../src/rules/string");
+const PromiseValidator = require("../build/pvalidator.min");
+const string = require("../build/rules/string");
 
 const emptyFields = {
   field1: "",
