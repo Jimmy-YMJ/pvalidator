@@ -9,7 +9,8 @@ $ npm install pvalidator
 ```
 Use in browser:
 
-Use 'pvalidator.min.js' and 'rules.min.js' under the build directory. The reference is `window.PValidator` and `window.prules`.
+Scripts for browser is under `build` directory, use `pvalidator.js` and `rules.js` for development environment(contains inline source maps), use `pvalidator.min.js` and `rules.min.js` for production.
+The references in browser is `window.PValidator` and `window.prules`.
 
 ## Problems to solve
 - Suppose you have a form with more than one fields, the strategy you want to validate is:
@@ -131,10 +132,10 @@ rules provided by **pvalidtor**:
 The rule used by **pvalidator** is a `function`, below is the `equal` rule:
 ```
 function (judgement, success, failure) {
-  if(judgement[0] === judgement[1]){
+  if(judgement[0] == judgement[1]){
     success();
   }
-  failure("The :field's value is not same with given confirmation.");
+  failure("The :field's value is not equal to given confirmation.");
 };
 
 ```

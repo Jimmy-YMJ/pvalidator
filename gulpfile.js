@@ -21,6 +21,17 @@ function bundleMin(file, standalone, outputFile) {
   });
 }
 
+function bundle(file, standalone, outputFile) {
+  var b = browserify({
+    entries: file,
+    standalone: standalone,
+    debug: true
+  });
+  b.bundle(function (err, buf) {
+    fs.writeFileSync(outputFile, buf.toString());
+  });
+}
+
 gulp.task('clean', function () {
   return del('./build/**');
 });
@@ -32,6 +43,8 @@ gulp.task('lib', ['clean'], function () {
 });
 
 gulp.task('build', ['lib'], function () {
+  bundle('./build/modules/pvalidator.js', 'PValidator', './build/pvalidator.js');
+  bundle('./build/modules/rules.js', "prules", './build/rules.js');
   bundleMin('./build/modules/pvalidator.js', 'PValidator', './build/pvalidator.min.js');
   bundleMin('./build/modules/rules.js', "prules", './build/rules.min.js');
 });
