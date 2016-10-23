@@ -1,5 +1,5 @@
 # pvalidator
-Promise based data validator for browser and ndoejs, it is lightweight and powerful.
+Promise based data validator for browser and ndoejs, it is lightweight and flexible.
 
 
 ## Installing
