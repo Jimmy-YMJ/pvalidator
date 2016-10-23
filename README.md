@@ -9,7 +9,7 @@ $ npm install pvalidator
 ```
 Use in browser:
 
-Copy `pvalidator.min.js` under the build directory. 
+Use `pvalidator.min.js` under the build directory. 
 
 ## Problems to solve
 - Suppose you have a form with more than one fields, the strategy you want to validate is:
@@ -23,6 +23,8 @@ Copy `pvalidator.min.js` under the build directory.
 - Finally, you may need a flexible async validator for server side usage.
 
 ## Example
+Before you use a Promise, you may need to know the difference between `promise.then(onFulfilled, onRejected)` and `promise.catch(onRejected).then(onFulfilled)`. For the first example, only one of the callbacks will be executed.
+But for the second, `onFulfilled` will always be executed because the reject will be catched first.
 ```
 var Validator = require('pvalidator'),
   emailRule = require('pvalidator/rules/email'),
@@ -44,7 +46,6 @@ var errors = {
 };
 
 var validator = new Validator(fields, rules, errors);
-
 validator.validate().then(function(fields){
   // validation failed, this callback will not be executed.
 }, function(errors){
@@ -57,6 +58,13 @@ validator.validateField('email').then(function(field){
   // validation succeed, this callback will not be executed.
 });
 ```
+## How the validator behave
+
+When you call the **validate** method, all fields will be checked by their rules correspondingly.
+
+For each field, the given rules will be applied one by one. If a rule validation is failed the field validation will stop and error message from customErrors or the failure rule will be recorded.
+
+Notably, **pvalidator** provides a pseudo "empty" rule, "empty" will pass any field that is `undefined`, `null` or `""`. You can use this rule for a not required field. Usage: `var rulesForUsername = {username: ["empty", ...]}`.
 
 ## Constructor and methods
 
@@ -72,7 +80,7 @@ validator.validateField('email').then(function(field){
 
 | **Option** | **Description** | **type** | **default** |
 | --- | --- | --- | --- |
-| fields | if this option is setted, the __fields__ will replace the initial fields setted in constructor | `Object` | `undefined` |
+| fields | if this option is setted, it will replace the initial fields setted in constructor | `Object` | `undefined` |
 | objectErrors | the default errors is returned by type of `Array`, if this option is setted, the type of errors is `Object` |`Boolean` | `false` |
 
 This method returns an instance of `Promise`.
