@@ -159,3 +159,5 @@ function(email, success, failure){
   });
 }
 ```
+## License
+MIT
