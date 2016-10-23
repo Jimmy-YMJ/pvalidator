@@ -9,7 +9,7 @@ $ npm install pvalidator
 ```
 Use in browser:
 
-Use `pvalidator.min.js` under the build directory. 
+Use 'pvalidator.min.js' and 'rules.min.js' under the build directory. The reference is `window.PValidator` and `window.prules`.
 
 ## Problems to solve
 - Suppose you have a form with more than one fields, the strategy you want to validate is:
@@ -117,16 +117,15 @@ rules provided by **pvalidtor**:
 
 | **Rule** | **Description** | **Usage** |
 | --- | --- | --- |
-| "empty" | the **"empty"** pseudo rule | `var rules = ["empty", email]`|
-| alpha | the target can only contains alpha characters | `var rule = require('pvalidator/rules/alpha')` |
-| alpha_dash | the target can only contains alphanumeric characters, dashes or underscores. | `var rule = require('pvalidator/rules/alpha_dash')` |
-| alpha_num | the target can only contains alphanumeric characters | `var rule = require('pvalidator/rules/alpha_num')` |
-| email | the target must be a email | `var rule = require('pvalidator/rules/email')` |
-| equal | target[0] == target[1] | `var rule = require('pvalidator/rules/equal')` |
-| same | target[0] === target[1] | `var rule = require('pvalidator/rules/same')` |
-| number | the target must be a number | `var rule = require('pvalidator/rules/number)')(min, max)` |
-| string | the target must be a string | `var rule = require('pvalidator/rules/string')(minLength, maxLength)` |
-| url | the target must be a url | `var rule = require('pvalidator/rules/url')` |
+| "empty" | the **"empty"** pseudo rule | `["empty", email]`|
+| alpha | the target can only contains alpha characters | `require('pvalidator/rules/alpha')` |
+| alpha_dash | the target can only contains alphanumeric characters, dashes or underscores. | `require('pvalidator/rules/alpha_dash')` |
+| alpha_num | the target can only contains alphanumeric characters | `require('pvalidator/rules/alpha_num')` |
+| email | the target must be a email | `require('pvalidator/rules/email')` |
+| equal | target[0] == target[1] | `require('pvalidator/rules/equal')` |
+| number | the target must be a number | `require('pvalidator/rules/number)')(min, max)` |
+| string | the target must be a string | `require('pvalidator/rules/string')(minLength, maxLength)` |
+| url | the target must be a url | `require('pvalidator/rules/url')` |
 
 ## Write your own rules
 The rule used by **pvalidator** is a `function`, below is the `equal` rule:
@@ -161,3 +160,8 @@ function(email, success, failure){
 ```
 ## License
 MIT
+
+## Contribute
+- Welcome Issues.
+- Clone the repository -> `npm install` -> do something -> `npm run build` -> `npm run test` -> make a PR.
+- Email me ddmingmingyang@gmail.com for being a contributor if necessary.

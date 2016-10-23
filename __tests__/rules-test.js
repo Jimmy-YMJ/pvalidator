@@ -1,6 +1,6 @@
-const PromiseValidator = require("../build/pvalidator.min");
+"use strict";
 
-const rulesHomePath = "../build/rules/";
+const PromiseValidator = require("../build/pvalidator.min");
 
 function testRule(fields, rules, expectErrors) {
   return () => {
@@ -11,17 +11,7 @@ function testRule(fields, rules, expectErrors) {
   };
 }
 
-const rules = {
-  alpha: require(rulesHomePath + "alpha"),
-  alpha_dash: require(rulesHomePath + "alpha_dash"),
-  alpha_num: require(rulesHomePath + "alpha_num"),
-  email: require(rulesHomePath + "email"),
-  equal: require(rulesHomePath + "equal"),
-  number: require(rulesHomePath + "number"),
-  same: require(rulesHomePath + "same"),
-  string: require(rulesHomePath + "string"),
-  url: require(rulesHomePath + "url")
-};
+const rules = require('../build/rules.min');
 
 
 /**
@@ -119,23 +109,6 @@ const equalErrors = {
 
 it("equal rule test", testRule(equalFields, equalRules, equalErrors));
 
-/**
- * same rule test
- * */
-
-const sameFields = {
-  field1: ["foo", "foo"],
-  field2: [new Array(0), new Array(0)]
-};
-const sameRules = {
-  field1: rules.same,
-  field2: rules.same
-};
-const sameErrors = {
-  field2: "The field2's value is not same with given confirmation."
-};
-
-it("same rule test", testRule(sameFields, sameRules, sameErrors));
 
 /**
  * url rule test

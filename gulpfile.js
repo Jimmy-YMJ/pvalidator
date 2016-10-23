@@ -10,33 +10,43 @@ function minify(src) {
   return UglifyJS.minify(src, {fromString: true}).code;
 }
 
-gulp.task('clean', function () {
-  del('./build/**/*.*');
-});
-
-gulp.task('lib', ['clean'], function () {
-  gulp.src('./src/**/*.*')
-    .pipe(babel())
-    .pipe(gulp.dest('./build'));
-});
-
-gulp.task('build', ['lib'], function () {
+function bundleMin(file, standalone, outputFile) {
   var b = browserify({
-    entries: './src/pvalidator.js',
-    standalone: 'PromiseValidator',
+    entries: file,
+    standalone: standalone,
     debug: false
   });
   b.bundle(function (err, buf) {
-    fs.writeFileSync('./build/pvalidator.min.js', minify(buf.toString()));
+    fs.writeFileSync(outputFile, minify(buf.toString()));
   });
+}
+
+gulp.task('clean', function () {
+  return del('./build/**');
+});
+
+gulp.task('lib', ['clean'], function () {
+  return gulp.src('./src/**')
+    .pipe(babel())
+    .pipe(gulp.dest('./build/modules'));
+});
+
+gulp.task('build', ['lib'], function () {
+  bundleMin('./build/modules/pvalidator.js', 'PValidator', './build/pvalidator.min.js');
+  bundleMin('./build/modules/rules.js', "prules", './build/rules.min.js');
 });
 
 gulp.task('eslint', function () {
-  gulp.src('./src/**/*.*').pipe(eslint());
+  return gulp.src('./src/**').pipe(eslint());
 });
 
 gulp.task('release', function () {
-  gulp.src(['./package.json', './README.md', './LICENSE']).pipe(gulp.dest('./build'));
+  gulp.src([
+    './build/modules/**',
+    './package.json',
+    './README.md',
+    './LICENSE'])
+    .pipe(gulp.dest('./build/package'));
 });
 
-gulp.task('default', ['eslint', 'build', 'release']);
+gulp.task('default', ['eslint', 'build']);
