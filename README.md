@@ -8,7 +8,7 @@ Use via npm:
 $ npm install pvalidator
 
 var Validator = require('pvalidator'),
-    string = require('pvalidator/rules.string');
+    string = require('pvalidator/rules/string');
 
 // Use es6 import
 import Validator from 'pvalidator';
