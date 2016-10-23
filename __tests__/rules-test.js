@@ -226,3 +226,20 @@ const booleanErrors = {
 
 it("boolean rule test", testRule(booleanFields, booleanRules, booleanErrors));
 
+/**
+ * integer rule test
+ * */
+
+const integerFields = {
+  field1: 33,
+  field2: 44.5
+};
+const integerRules = {
+  field1: rules.integer,
+  field2: rules.integer
+};
+const integerErrors = {
+  field2: "The field2 is not an integer."
+};
+
+it("integer rule test", testRule(integerFields, integerRules, integerErrors));
