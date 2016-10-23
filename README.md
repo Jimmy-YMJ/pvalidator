@@ -137,6 +137,7 @@ rules provided by **pvalidtor**:
 | url | The target must be a url |
 | array | The target must be an array |
 | boolean | The target must be a boolean |
+| integer | The target must be an Integer |
 
 
 ## Write your own rules
