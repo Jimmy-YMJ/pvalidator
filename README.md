@@ -165,4 +165,4 @@ MIT
 ## Contribute
 - Welcome Issues.
 - Clone the repository -> `npm install` -> do something -> `npm run build` -> `npm run test` -> make a PR.
-- Email me ddmingmingyang@gmail.com for being a contributor if necessary.
+- Email me ddmingmingyang@gmail.com for becoming a contributor if necessary.
