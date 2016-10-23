@@ -8,5 +8,6 @@ module.exports = {
   url: require("./rules/url"),
   number: require("./rules/number"),
   boolean: require("./rules/boolean"),
-  array: require("./rules/array")
+  array: require("./rules/array"),
+  integer: require("./rules/integer")
 };
