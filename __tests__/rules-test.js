@@ -188,3 +188,41 @@ const numberErrors = {
 };
 
 it("number rule test", testRule(numberFields, numberRules, numberErrors));
+
+/**
+ * array rule test
+ * */
+
+const arrayFields = {
+  field1: ["foo", "foo"],
+  field2: {}
+};
+const arrayRules = {
+  field1: rules.array,
+  field2: rules.array
+};
+const arrayErrors = {
+  field2: "The field2 is not an array."
+};
+
+it("array rule test", testRule(arrayFields, arrayRules, arrayErrors));
+
+
+/**
+ * boolean rule test
+ * */
+
+const booleanFields = {
+  field1: false,
+  field2: {}
+};
+const booleanRules = {
+  field1: rules.boolean,
+  field2: rules.boolean
+};
+const booleanErrors = {
+  field2: "The field2 is not a boolean."
+};
+
+it("boolean rule test", testRule(booleanFields, booleanRules, booleanErrors));
+

@@ -6,5 +6,7 @@ module.exports = {
   equal: require("./rules/equal"),
   string: require("./rules/string"),
   url: require("./rules/url"),
-  number: require("./rules/number")
+  number: require("./rules/number"),
+  boolean: require("./rules/boolean"),
+  array: require("./rules/array")
 };
