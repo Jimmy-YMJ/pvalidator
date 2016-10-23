@@ -6,6 +6,14 @@ Promise based data validator for browser and ndoejs, it is lightweight and flexi
 Use via npm:
 ```
 $ npm install pvalidator
+
+var Validator = require('pvalidator'),
+    string = require('pvalidator/rules.string');
+
+// Use es6 import
+import Validator from 'pvalidator';
+import { string, email } from 'pvalidator/rules';
+
 ```
 Use in browser:
 
@@ -116,17 +124,20 @@ The **pvalidator** provides a pesudo rule named `"empty"`, if this rule is sette
 
 rules provided by **pvalidtor**:
 
-| **Rule** | **Description** | **Usage** |
+| **Rule** | **Description** |
 | --- | --- | --- |
-| "empty" | the **"empty"** pseudo rule | `["empty", email]`|
-| alpha | the target can only contains alpha characters | `require('pvalidator/rules/alpha')` |
-| alpha_dash | the target can only contains alphanumeric characters, dashes or underscores. | `require('pvalidator/rules/alpha_dash')` |
-| alpha_num | the target can only contains alphanumeric characters | `require('pvalidator/rules/alpha_num')` |
-| email | the target must be a email | `require('pvalidator/rules/email')` |
-| equal | target[0] == target[1] | `require('pvalidator/rules/equal')` |
-| number | the target must be a number | `require('pvalidator/rules/number)')(min, max)` |
-| string | the target must be a string | `require('pvalidator/rules/string')(minLength, maxLength)` |
-| url | the target must be a url | `require('pvalidator/rules/url')` |
+| "empty" | The **"empty"** pseudo rule |
+| alpha | The target can only contains alpha characters |
+| alpha_dash | The target can only contains alphanumeric characters, dashes or underscores. |
+| alpha_num | The target can only contains alphanumeric characters |
+| email | The target must be a email |
+| equal | target[0] == target[1] |
+| number | The target must be a number |
+| string | The target must be a string |
+| url | The target must be a url |
+| array | The target must be an array |
+| boolean | The target must be a boolean |
+
 
 ## Write your own rules
 The rule used by **pvalidator** is a `function`, below is the `equal` rule:
