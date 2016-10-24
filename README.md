@@ -4,9 +4,10 @@ Promise based data validator for browser and ndoejs, it is lightweight and flexi
 
 ## Installing
 Use via npm:
-```
+```bash
 $ npm install pvalidator
-
+```
+```javascript
 var Validator = require('pvalidator'),
     string = require('pvalidator/rules/string');
 
@@ -34,7 +35,7 @@ The references in browser is `window.PValidator` and `window.prules`.
 ## Example
 Before you use a Promise, you may need to know the difference between `promise.then(onFulfilled, onRejected)` and `promise.catch(onRejected).then(onFulfilled)`. For the first example, only one of the callbacks will be executed.
 But for the second, `onFulfilled` will always be executed because the reject will be catched first.
-```
+```javascript
 var Validator = require('pvalidator'),
   emailRule = require('pvalidator/rules/email'),
   alphaRule = require('pvalidator/rules/alpha'),
@@ -95,7 +96,7 @@ Notably, **pvalidator** provides a pseudo "empty" rule, "empty" will pass any fi
 This method returns an instance of `Promise`.
 
 Example:
-```
+```javascript
 validator.validate({objectErrors: true}).then(function(fields){
   // validation success
 }, function(errors){
@@ -112,7 +113,7 @@ validator.validate({objectErrors: true}).then(function(fields){
 This method returns an instance of `Promise`.
 
 Example:
-```
+```javascript
 validator.validateField("name").then(function(fieldValue){
   // validation success
 }, function(error){
@@ -142,7 +143,7 @@ rules provided by **pvalidtor**:
 
 ## Write your own rules
 The rule used by **pvalidator** is a `function`, below is the `equal` rule:
-```
+```javascript
 function (judgement, success, failure) {
   if(judgement[0] == judgement[1]){
     success();
@@ -156,7 +157,7 @@ when a rule is applied to a field, the field's value will be passed as the first
 the `failure` callback accepts a string param whose ":field" will be replaced with the name(key) of the field when error message is produced.
 
 Email server side validation rule example(not rigorous):
-```
+```javascript
 function(email, success, failure){
   jQuery.ajax({
     method: "POST",
