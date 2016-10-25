@@ -4,6 +4,7 @@ const UglifyJS = require('uglify-js');
 const babel = require('gulp-babel');
 const del = require('del');
 const browserify = require('browserify');
+const derequire = require('derequire');
 const fs = require('fs');
 
 function minify(src) {
@@ -17,7 +18,8 @@ function bundleMin(file, standalone, outputFile) {
     debug: false
   });
   b.bundle(function (err, buf) {
-    fs.writeFileSync(outputFile, minify(buf.toString()));
+    var code = derequire(buf.toString(), '_dereq_', 'require');
+    fs.writeFileSync(outputFile, minify(code));
   });
 }
 
@@ -28,7 +30,8 @@ function bundle(file, standalone, outputFile) {
     debug: true
   });
   b.bundle(function (err, buf) {
-    fs.writeFileSync(outputFile, buf.toString());
+    var code = derequire(buf.toString(), '_dereq_', 'require');
+    fs.writeFileSync(outputFile, code);
   });
 }
 
