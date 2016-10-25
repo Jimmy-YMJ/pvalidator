@@ -1,20 +1,20 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.prules = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.prules = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = {
-  alpha: require("./rules/alpha"),
-  alpha_dash: require("./rules/alpha_dash"),
-  alpha_num: require("./rules/alpha_num"),
-  email: require("./rules/email"),
-  equal: require("./rules/equal"),
-  string: require("./rules/string"),
-  url: require("./rules/url"),
-  number: require("./rules/number"),
-  boolean: require("./rules/boolean"),
-  array: require("./rules/array"),
-  integer: require("./rules/integer")
+  alpha: _dereq_("./rules/alpha"),
+  alpha_dash: _dereq_("./rules/alpha_dash"),
+  alpha_num: _dereq_("./rules/alpha_num"),
+  email: _dereq_("./rules/email"),
+  equal: _dereq_("./rules/equal"),
+  string: _dereq_("./rules/string"),
+  url: _dereq_("./rules/url"),
+  number: _dereq_("./rules/number"),
+  boolean: _dereq_("./rules/boolean"),
+  array: _dereq_("./rules/array"),
+  integer: _dereq_("./rules/integer")
 };
-},{"./rules/alpha":2,"./rules/alpha_dash":3,"./rules/alpha_num":4,"./rules/array":5,"./rules/boolean":6,"./rules/email":7,"./rules/equal":8,"./rules/integer":9,"./rules/number":10,"./rules/string":11,"./rules/url":12}],2:[function(require,module,exports){
+},{"./rules/alpha":2,"./rules/alpha_dash":3,"./rules/alpha_num":4,"./rules/array":5,"./rules/boolean":6,"./rules/email":7,"./rules/equal":8,"./rules/integer":9,"./rules/number":10,"./rules/string":11,"./rules/url":12}],2:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function (value, success, failure) {
@@ -23,7 +23,7 @@ module.exports = function (value, success, failure) {
   }
   failure("The :field can only contain alpha characters.");
 };
-},{}],3:[function(require,module,exports){
+},{}],3:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function (value, success, failure) {
@@ -32,7 +32,7 @@ module.exports = function (value, success, failure) {
   }
   failure("The :field can only contain alphanumeric characters, dashes or underscores.");
 };
-},{}],4:[function(require,module,exports){
+},{}],4:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function (value, success, failure) {
@@ -41,7 +41,7 @@ module.exports = function (value, success, failure) {
   }
   failure("The :field must be alphanumeric.");
 };
-},{}],5:[function(require,module,exports){
+},{}],5:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function array(arr, success, failure) {
@@ -51,7 +51,7 @@ module.exports = function array(arr, success, failure) {
     failure("The :field is not an array.");
   }
 };
-},{}],6:[function(require,module,exports){
+},{}],6:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function boolean(bool, success, failure) {
@@ -61,14 +61,14 @@ module.exports = function boolean(bool, success, failure) {
     failure("The :field is not a boolean.");
   }
 };
-},{}],7:[function(require,module,exports){
+},{}],7:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function (email, success, failure) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   re.test(email) ? success() : failure("The :field is not a valid email.");
 };
-},{}],8:[function(require,module,exports){
+},{}],8:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function (judgement, success, failure) {
@@ -77,7 +77,7 @@ module.exports = function (judgement, success, failure) {
   }
   failure("The :field's value is not equal to given confirmation.");
 };
-},{}],9:[function(require,module,exports){
+},{}],9:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function integer(int, success, failure) {
@@ -87,7 +87,7 @@ module.exports = function integer(int, success, failure) {
     failure("The :field is not an integer.");
   }
 };
-},{}],10:[function(require,module,exports){
+},{}],10:[function(_dereq_,module,exports){
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -109,7 +109,7 @@ module.exports = function (min, max) {
     success();
   };
 };
-},{}],11:[function(require,module,exports){
+},{}],11:[function(_dereq_,module,exports){
 "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -132,7 +132,7 @@ module.exports = function (min, max) {
     success();
   };
 };
-},{}],12:[function(require,module,exports){
+},{}],12:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = function (url, success, failure) {
