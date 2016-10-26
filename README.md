@@ -18,7 +18,7 @@ import { string, email } from 'pvalidator/rules';
 ```
 Use in browser:
 
-Scripts for browser is under [build](https://github.com/Jimmy-YMJ/p-validator/tree/master/build) directory, use `pvalidator.js` and `rules.js` for development environment(contains inline source maps), use `pvalidator.min.js` and `rules.min.js` for production.
+Scripts for browser is under [build](https://github.com/Jimmy-YMJ/pvalidator/tree/master/build) directory, use `pvalidator.js` and `rules.js` for development environment(contains inline source maps), use `pvalidator.min.js` and `rules.min.js` for production.
 The references in browser is `window.PValidator` and `window.prules`.
 
 ## Problems to solve
