@@ -47,7 +47,7 @@ var fields = {
   username: function(){
     return "username";
   },
-  email: 'foo@bar.com'
+  email: 'bar.com'
 };
 
 var rules = {
@@ -56,20 +56,22 @@ var rules = {
 };
 
 var errors = {
-  username: '用户名不符合要求。'
+  username: ['用户名的长度必须在5到25个字符之间', '用户名只能包含字母'],
+  email: '邮箱格式不正确'
 };
 
 var validator = new Validator(fields, rules, errors);
+
 validator.validate().then(function(fields){
-  // Validation failed, this callback will not be executed.
+  // This callback will not be executed.
 }, function(errors){
-  // Do something with errors(the default type of errors is Array): ['用户名不符合要求。']
+  // Do something with errors(the default type of errors is Array): ['邮箱格式不正确'].
 });
 
-validator.validateField('email').then(function(field){
-  // Do something with field: 'foo@bar.com'
+validator.validateField('username').then(function(field){
+  // Do something with the field: 'username'
 }, function(error){
-  // Validation succeed, this callback will not be executed.
+  // This callback will not be executed.
 });
 ```
 ## How the validator behave
@@ -88,7 +90,7 @@ Notably, **pvalidator** provides a pseudo "empty" rule, "empty" will pass any fi
 | --- | --- | --- | --- |
 | fields  | The data you want to validate. Example: `{name: "foo"}` or `{name: function(){ return "foo"; }}`.| `Object` | `undefined` |
 | rules  | Rules for fields, a rule will be applied to a field with the same key. Example: `{name: anyRule}`| `Object` | `undefined`|
-| customErrors | Replace the default error message from rule. Example: `{name: "the given name is not acceptable"}`| `Object` | `undefined` |
+| customErrors | Replace the default error message from rule. Example: `{name: "The given name is not acceptable"}`. If the target field has more than one rules, the custom errors can be an array which has the same order of rules. | `Object` | `undefined` |
 
 If you want to get a field value dynamically, you can use a function as the value of that field.
 
