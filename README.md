@@ -162,7 +162,7 @@ function (judgement, success, failure) {
 ```
 Explaination:
 When a rule is applied to a field, this field's value will be passed as the first param, `success` and `failure` callbacks as the second and third params, anytime you want this field pass the rule validation just call the `success` and vice versa.
-The `failure` callback accepts a string param whose ":field" part will be replaced with the name(key) of the target field when error message is produced.
+The `failure` callback accepts a param of any type, and when a string param is passed the ":field" part this param will be replaced with the name(key) of the target field when error message is produced.
 
 Email server side validation rule example(not rigorous):
 ```javascript
@@ -175,7 +175,7 @@ function(email, success, failure){
       success();
     },
     error: function(){
-      failure("The email is already exists");
+      failure("This email is already exists");
     }
   });
 }
