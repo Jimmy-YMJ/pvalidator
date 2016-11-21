@@ -243,3 +243,15 @@ const integerErrors = {
 };
 
 it("integer rule test", testRule(integerFields, integerRules, integerErrors));
+
+
+/**
+ * Rule factory test
+ * */
+
+it("factory test", testRule(integerFields, {
+  field1: rules.factory(rules.integer, 1),
+  field2: rules.factory(rules.integer, 2)
+}, {
+  field2: 2
+}));
