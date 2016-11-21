@@ -131,40 +131,66 @@ validator.validateField("name").then(function(fieldValue){
 ## Rules
 The **pvalidator** provides a pseudo rule named `"empty"`, if this rule is provided as the first item of rule array, the target field can pass rule validation when it it empty ignoring any other rules.
 
-Rules provided by **pvalidtor**:
+You can custom rule ( excepting `"empty"`, `string` and `number`) error using the **rule factory**:
+```javascript
+var Validator = require('pvalidator');
+var factory = require('pvalidator/rules/factory'),
+    emailRule = require('pvalidator/rules/email');
+
+var validator = new Validator(
+    {
+        email: 'foo'
+    },
+    {
+        email: factory(emailRule, 'bar')
+    }
+);
+
+validator.validate().catch(function(err){
+    console.log(err); // Output: ['bar']
+});
+
+```
+
+
+Rules provided by **pvalidator**:
 
 | **Rule** | **Description** |
-| --- | --- | --- |
+| --- | --- |
 | "empty" | The **"empty"** pseudo rule |
 | alpha | The target can only contains alpha characters |
 | alpha_dash | The target can only contains alphanumeric characters, dashes or underscores. |
 | alpha_num | The target can only contains alphanumeric characters |
 | email | The target must be a email |
 | equal | target[0] == target[1] |
-| number | The target must be a number |
-| string | The target must be a string |
+| number(min, max, error) | The target must be a number whose value is between `min` and `max` |
+| string(min, max, error) | The target must be a string whose length is between `min` and `max`|
 | url | The target must be a url |
 | array | The target must be an array |
 | boolean | The target must be a boolean |
 | integer | The target must be an Integer |
 
+The `string` and `number` rules are factories.
+
 
 ## Write your own rules
 The rule used by **pvalidator** is a `function`, below is the `equal` rule:
 ```javascript
-function (judgement, success, failure) {
-  if(judgement[0] == judgement[1]){
-    success();
-  }
-  failure("The :field's value is not equal to given confirmation.");
+function (judgement, success, failure, error) {
+    if(judgement[0] == judgement[1]){
+        success();
+    }
+    error = typeof error !== 'undefined' ? error : "The :field's value is not equal to given confirmation.";
+    failure(error);
 };
 
 ```
 Explaination:
 When a rule is applied to a field, this field's value will be passed as the first param, `success` and `failure` callbacks as the second and third params, anytime you want this field pass the rule validation just call the `success` and vice versa.
-The `failure` callback accepts a param of any type, and when a string param is passed the ":field" part this param will be replaced with the name(key) of the target field when error message is produced.
+The `failure` callback accepts a param of any type, and when a string param is passed the ":field" part of this param will be replaced with the name(key) of the target field when error message is produced.
+Param `error` is optional, it will be used by rule factory to custom rule error if it's handled correctly.
 
-Email server side validation rule example(not rigorous):
+Email server side validation rule example ( not rigorous ):
 ```javascript
 function(email, success, failure){
   jQuery.ajax({
