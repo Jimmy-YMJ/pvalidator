@@ -187,7 +187,9 @@ function (judgement, success, failure, error) {
 ```
 Explaination:
 When a rule is applied to a field, this field's value will be passed as the first param, `success` and `failure` callbacks as the second and third params, anytime you want this field pass the rule validation just call the `success` and vice versa.
+
 The `failure` callback accepts a param of any type, and when a string param is passed the ":field" part of this param will be replaced with the name(key) of the target field when error message is produced.
+
 Param `error` is optional, it will be used by rule factory to custom rule error if it's handled correctly.
 
 Email server side validation rule example ( not rigorous ):
