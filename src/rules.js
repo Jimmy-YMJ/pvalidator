@@ -9,5 +9,6 @@ module.exports = {
   number: require("./rules/number"),
   boolean: require("./rules/boolean"),
   array: require("./rules/array"),
-  integer: require("./rules/integer")
+  integer: require("./rules/integer"),
+  factory: require("./rules/factory")
 };
