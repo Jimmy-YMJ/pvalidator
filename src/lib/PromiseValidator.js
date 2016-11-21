@@ -28,7 +28,7 @@ PromiseValidator.prototype = {
       return value;
     }, function (errTemplate) {
       var err = this.customErrors[field];
-      err = err ? (err instanceof Array ? err[ruleIndex] : err) : errTemplate.replace(":field", field);
+      err = err ? (err instanceof Array ? err[ruleIndex] : err) : (typeof errTemplate === 'string' ? errTemplate.replace(":field", field) : errTemplate);
       this.results = this.results || {};
       this.results[field] = err;
       return Promise.reject(err);
