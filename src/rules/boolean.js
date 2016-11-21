@@ -1,7 +1,7 @@
-module.exports = function boolean(bool, success, failure) {
+module.exports = function boolean(bool, success, failure, error) {
   if(typeof bool === "boolean"){
     success();
-  }else{
-    failure("The :field is not a boolean.");
   }
+  error = typeof error !== 'undefined' ? error : "The :field is not a boolean.";
+  failure(error);
 };

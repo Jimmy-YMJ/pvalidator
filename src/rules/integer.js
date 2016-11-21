@@ -1,7 +1,7 @@
-module.exports = function integer(int, success, failure){
+module.exports = function integer(int, success, failure, error){
   if(typeof int === "number" && /^\d+$/.test(int + "")){
     success();
-  }else{
-    failure("The :field is not an integer.");
   }
+  error = typeof error !== 'undefined' ? error : "The :field is not an integer.";
+  failure(error);
 };

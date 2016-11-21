@@ -1,6 +1,7 @@
-module.exports = function (value, success, failure) {
+module.exports = function (value, success, failure, error) {
   if(/^[a-zA-Z0-9]+$/.test(value)){
     success();
   }
-  failure("The :field must be alphanumeric.");
+  error = typeof error !== 'undefined' ? error : "The :field must be alphanumeric.";
+  failure(error);
 };

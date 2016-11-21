@@ -1,7 +1,8 @@
-module.exports = function array(arr, success, failure) {
+module.exports = function array(arr, success, failure, error) {
   if(Object.prototype.toString.call(arr) === "[object Array]"){
     success();
   }else{
-    failure("The :field is not an array.");
+    error = typeof error !== 'undefined' ? error : "The :field is not an array.";
+    failure(error);
   }
 };
